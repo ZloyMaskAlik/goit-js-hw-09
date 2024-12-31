@@ -66,7 +66,7 @@ const images = [
     },
 ];
   
-console.log(SimpleLightbox);
+
 
 const createImageTemplate = image => {
     return `
@@ -75,7 +75,6 @@ const createImageTemplate = image => {
        <img
          class="gallery-image"
          src="${image.preview}"
-         data-source="${image.original}"
          alt="${image.description}"
         />
         </a>
@@ -88,15 +87,5 @@ const createImagesTemplate = images.map( item => createImageTemplate(item)).join
 const galleryImages = document.querySelector (`.js-images`);
 galleryImages.innerHTML = createImagesTemplate;
   
-galleryImages.addEventListener(`click`, event => {
-   event.preventDefault();
-  if (event.target === event.currentTarget) {
-    return;
-  }
-
-  const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" width="1112" height="640">
-`)
-instance.show()
-})
+new SimpleLightbox(`.js-images a`)
 
