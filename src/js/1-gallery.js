@@ -87,5 +87,5 @@ const createImagesTemplate = images.map( item => createImageTemplate(item)).join
 const galleryImages = document.querySelector (`.js-images`);
 galleryImages.innerHTML = createImagesTemplate;
   
-new SimpleLightbox(`.js-images a`)
+new SimpleLightbox(`.js-images a`, {captionsData: `alt`, captionDelay: 250 })
 

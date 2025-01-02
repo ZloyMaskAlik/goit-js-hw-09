@@ -27,9 +27,14 @@ a {
     font-weight: 700;
 }
 
+.task-link {
+    display: flex;
+    justify-content: center
+}
+
 li {
-    max-width: 380px;
-    margin: 24px auto;
+    min-width: 380px;
+    margin: 24px;
     border-radius: 8px;
     box-shadow: 5px 10px 9px 8px #d8d7d7;
     background-color: #4E75FF;
