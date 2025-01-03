@@ -1,3 +1,4 @@
+localStorage.removeItem(`loglevel`);
 const feedbackFormEl = document.querySelector(`form`);
 let formData = {
     email: ``,
@@ -6,7 +7,7 @@ let formData = {
 
 const fillFormFields = () => {
     try {
-        if (Object.values(formData).includes(``)) {
+        if (localStorage.length === 0) {
             return;
         }
         const formDataFromLs = JSON.parse(localStorage.getItem(`feedback-form-state`));
@@ -36,7 +37,7 @@ const onFormFieldChange = event => {
             
 const onFeedbackFormSubmit = event => {
     event.preventDefault();
-        if (Object.values(formData).includes(``)) {
+        if (formData.email === '' || formData.message === '') {
             alert`Fill please all fields`;
         } else {
             console.log(formData); 
