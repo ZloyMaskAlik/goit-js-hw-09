@@ -1,4 +1,3 @@
-localStorage.removeItem(`loglevel`);
 const feedbackFormEl = document.querySelector(`form`);
 let formData = {
     email: ``,
@@ -7,7 +6,7 @@ let formData = {
 
 const fillFormFields = () => {
     try {
-        if (localStorage.length === 0) {
+        if (localStorage.getItem('feedback-form-state') === null) {
             return;
         }
         const formDataFromLs = JSON.parse(localStorage.getItem(`feedback-form-state`));
@@ -25,7 +24,7 @@ const fillFormFields = () => {
 
 fillFormFields();
 
-const onFormFieldChange = event => {
+const onFormFieldInput = event => {
     const { target: formFieldEl } = event;
     const fieldValue = formFieldEl.value.trim();
     const fieldName = formFieldEl.name;
@@ -43,14 +42,10 @@ const onFeedbackFormSubmit = event => {
             console.log(formData); 
             event.currentTarget.reset();
             localStorage.removeItem(`feedback-form-state`);
-            const formCheck = Object.keys(formData)        
-            for (const key of formCheck) {
-                if (formData[key] !== '') {
-                    formData[key]='';
-                }   
-            }
-        }
+            Object.keys(formData).forEach(key => {formData[key] = ``;
+            });
+    };
 };
 
-feedbackFormEl.addEventListener(`change`, onFormFieldChange);
+feedbackFormEl.addEventListener(`input`, onFormFieldInput);
 feedbackFormEl.addEventListener(`submit`, onFeedbackFormSubmit);
