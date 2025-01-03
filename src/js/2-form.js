@@ -37,7 +37,7 @@ const onFormFieldChange = event => {
             
 const onFeedbackFormSubmit = event => {
     event.preventDefault();
-        if (formData.email === '' || formData.message === '') {
+        if (Object.values(formData).includes(``)) {
             alert`Fill please all fields`;
         } else {
             console.log(formData); 
